@@ -10,6 +10,69 @@
       rel="stylesheet"
     />
   </head>
-  <body class="bg-gray-50 font-lato">
+    <header class="relative h-[41.6875rem] py-[3.19rem] px-[4.31rem]">
+      <!-- Image de fond -->
+      <div class="absolute inset-0 bg-black/50">
+        <img
+          src="assets/images/header-bg.png"
+          alt="Background"
+          class="object-cover w-full h-full mix-blend-overlay"
+        />
+      </div>
+
+      <!-- Contenu du header -->
+      <div class="relative flex flex-col gap-[10.55rem]">
+        <!-- Logo -->
+        <img src="assets/images/Logo.svg" alt="Les Petits Plats" class="w-52" />
+
+        <!-- Texte principal -->
+        <div class="flex flex-col gap-[1.84rem] items-center">
+          <h1
+            class="text-center font-['Anton'] text-[2.75rem] font-normal text-yellow"
+          >
+            CHERCHEZ PARMI PLUS DE 1500 RECETTES<br />
+            DU QUOTIDIEN, SIMPLES ET DÉLICIEUSES
+          </h1>
+
+          <!-- Barre de recherche -->
+          <div class="relative max-w-[59.625rem] w-full">
+            <input
+              type="text"
+              placeholder="Rechercher une recette, un ingrédient, ..."
+              class="w-full pl-6 pr-16 text-lg bg-white rounded-[0.6875rem] h-[4.5rem]"
+            />
+            <button
+              class="absolute -translate-y-1/2 bg-black right-[0.63rem] top-1/2 p-[0.75rem] rounded-[0.625rem]"
+            >
+              <svg
+                width="28"
+                height="29"
+                viewBox="0 0 28 29"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g id="Group 4">
+                  <circle
+                    id="Ellipse 4"
+                    cx="10"
+                    cy="10.4219"
+                    r="9.5"
+                    stroke="white"
+                  />
+                  <line
+                    id="Line 2"
+                    x1="18.3536"
+                    y1="19.0683"
+                    x2="27.3536"
+                    y2="28.0683"
+                    stroke="white"
+                  />
+                </g>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
   </body>
 </html>
