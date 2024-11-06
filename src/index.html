@@ -84,65 +84,67 @@
     >
       <!-- Filtres -->
       <section class="flex flex-col w-full">
-        <div class="flex flex-wrap items-center gap-4">
+        <div class="flex flex-wrap items-center gap-[4.13rem]">
           <!-- Filtre Ingrédients -->
-          <div class="relative bg-white rounded-[0.6875rem]">
-            <button
-              id="ingredients-button"
-              class="flex items-center gap-[3.94rem] size-full text-[1rem] text-black px-4 py-[1.06rem]"
-            >
-              Ingrédients
-              <svg
-                class="w-4 h-4 transition-transform"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+          <div class="flex gap-4">
+            <div class="relative bg-white rounded-[0.6875rem]">
+              <button
+                id="ingredients-button"
+                class="flex items-center gap-[3.94rem] size-full text-[1rem] text-black px-4 py-[1.06rem]"
               >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
-            </button>
-
-            <!-- Menu déroulant -->
-            <div
-              id="ingredients-dropdown"
-              class="absolute z-10 hidden w-full px-4 py-[1.06rem] mt-1 rounded bg-white"
-            >
-              <div class="relative">
-                <input
-                  type="text"
-                  placeholder="Rechercher un ingrédient"
-                  class="w-full p-2 text-black placeholder-white rounded-[0.3125rem]"
-                />
+                Ingrédients
                 <svg
-                  class="absolute w-4 h-4 transform -translate-y-1/2 right-2 top-1/2"
+                  class="w-4 h-4 transition-transform"
                   fill="none"
-                  stroke="black"
+                  stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     stroke-width="2"
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    d="M19 9l-7 7-7-7"
                   />
                 </svg>
-              </div>
+              </button>
 
-              <!-- Liste des ingrédients -->
-              <ul class="mt-1 text-white">
-                <li class="py-2">Jus de citron</li>
-                <li class="py-2">Glaçons</li>
-                <li class="py-2">Tomate</li>
-                <li class="py-2">Poulet</li>
-                <li class="py-2">Poivron rouge</li>
-                <li class="py-2">Thon en miettes</li>
-                <li class="py-2">Vinaigrette</li>
-              </ul>
+              <!-- Menu déroulant -->
+              <div
+                id="ingredients-dropdown"
+                class="absolute z-10 hidden w-full px-4 py-[1.06rem] mt-1 rounded bg-white"
+              >
+                <div class="relative">
+                  <input
+                    type="text"
+                    placeholder="Rechercher un ingrédient"
+                    class="w-full p-2 text-black placeholder-white rounded-[0.3125rem]"
+                  />
+                  <svg
+                    class="absolute w-4 h-4 transform -translate-y-1/2 right-2 top-1/2"
+                    fill="none"
+                    stroke="black"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    />
+                  </svg>
+                </div>
+
+                <!-- Liste des ingrédients -->
+                <ul class="mt-1 text-white">
+                  <li class="py-2">Jus de citron</li>
+                  <li class="py-2">Glaçons</li>
+                  <li class="py-2">Tomate</li>
+                  <li class="py-2">Poulet</li>
+                  <li class="py-2">Poivron rouge</li>
+                  <li class="py-2">Thon en miettes</li>
+                  <li class="py-2">Vinaigrette</li>
+                </ul>
+              </div>
             </div>
           </div>
 
