@@ -147,6 +147,48 @@
           >
         </div>
       </section>
+
+      <!-- Grille des recettes -->
+      <section class="container">
+        <div
+          class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
+          id="recipes-container"
+        >
+          <article class="overflow-hidden bg-white rounded-[1.3125rem] shadow">
+            <div class="relative h-48">
+              <img
+                src="/src/assets/images/recettes/Recette01.jpg"
+                alt="Recipe"
+                class="object-cover w-full h-full"
+              />
+              <span
+                class="absolute px-[0.94rem] py-[0.31rem] text-[0.75rem] rounded-full bg-yellow top-[1.31rem] right-[1.25rem]"
+                >10min</span
+              >
+            </div>
+            <div class="px-6 pt-8 pb-[3.81rem] flex flex-col gap-[1.81rem]">
+              <h2 class="text-lg font-bold">Titre de la recette</h2>
+              <div class="">
+                <h3 class="mb-2 text-sm text-gray-500 uppercase">Recette</h3>
+                <p class="text-sm text-gray-600 line-clamp-3">
+                  Description de la recette...
+                </p>
+              </div>
+              <div>
+                <h3 class="mb-2 text-sm text-gray-500 uppercase">
+                  Ingrédients
+                </h3>
+                <div class="grid grid-cols-2 gap-4">
+                  <div class="text-sm">
+                    <p class="font-bold">Ingrédient</p>
+                    <p class="text-gray-600">Quantité</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
     </main>
   </body>
 </html>
