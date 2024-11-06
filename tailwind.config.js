@@ -6,6 +6,7 @@ module.exports = {
       colors: {
         primary: "#D04F4F",
         gray: {
+          25: "#EDEDED",
           50: "#F7F7F7",
           100: "#E7E7E7",
           200: "#C7BEBE",
@@ -17,10 +18,11 @@ module.exports = {
           orange: "#ED6454",
         },
         yellow: "#FFD15B",
+        black: "#1B1B1B",
       },
       fontFamily: {
-        lato: ["Lato", "sans-serif"],
-        roboto: ["Roboto", "sans-serif"],
+        default: ["Manrope", "sans-serif"],
+        anton: ["Anton", "sans-serif"],
       },
       fontSize: {
         "recipe-title": "18px",
