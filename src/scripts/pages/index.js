@@ -1,3 +1,4 @@
+import recipes from "../../data/recipes.js";
 import { toggleDropdown } from "../components/selector.js";
 
 const ingredientsDropdown = document.getElementById("ingredients-button");
@@ -50,6 +51,15 @@ function createRecipeCard(recipe) {
   `;
 }
 
+// Afficher toutes les recettes
+function displayRecipes() {
+  recipesContainer.innerHTML = recipes
+    .map((recipe) => createRecipeCard(recipe))
+    .join("");
+}
+
+// Initialiser l'affichage
+displayRecipes();
 
 ingredientsDropdown.addEventListener("click", () => {
   console.log("ingredientsDropdown");
