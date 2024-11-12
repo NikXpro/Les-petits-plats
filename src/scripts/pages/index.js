@@ -9,6 +9,9 @@ const searchInput = document.querySelector("input[type='text']");
 
 let activeTags = [];
 
+// Ajout d'une variable pour suivre l'état
+let wasAboveThreeChars = false;
+
 // Filtrer les recettes en fonction du texte de recherche et des tags
 function filterRecipes(searchText, activeTags = []) {
   let filteredRecipes = recipes;
@@ -181,8 +184,16 @@ displayRecipes();
 
 // Écouteur d'événement pour la recherche principale
 searchInput.addEventListener("input", (e) => {
-  if (e.target.value.trim().length >= 3 || e.target.value.trim().length === 0) {
+  const searchText = e.target.value.trim();
+
+  if (searchText.length >= 3) {
+    wasAboveThreeChars = true;
     updateSearch();
+  } else if (wasAboveThreeChars) {
+    // Réinitialisation uniquement quand on repasse sous les 3 caractères
+    wasAboveThreeChars = false;
+    displayRecipes(recipes);
+    updateDropdownLists(recipes);
   }
 });
 
