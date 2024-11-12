@@ -1,6 +1,7 @@
 import recipes from "../../data/recipes.js";
 import { createDropdown, initializeDropdown } from "../components/dropdown.js";
 import { recipeCard } from "../components/recipeCard.js";
+import { createTag } from "../components/tag.js";
 
 const ingredientsDropdown = document.getElementById("ingredients-button");
 const recipesContainer = document.getElementById("recipes-container");
@@ -70,15 +71,33 @@ function displayRecipes(recipesToDisplay = recipes) {
   }
 }
 
+// Mettre à jour l'affichage des tags
+function updateTagsDisplay() {
+  const tagsContainer = document.getElementById("active-tags");
+  tagsContainer.innerHTML = activeTags.map((tag) => createTag(tag)).join("");
+
+  // Ajouter les écouteurs d'événements pour les boutons de fermeture
+  tagsContainer.querySelectorAll(".tag-close-button").forEach((button) => {
+    button.addEventListener("click", () => {
+      removeTag(button.dataset.tagText);
+    });
+  });
+}
+
 // Gérer les tags actifs
 
 function addTag(text, type) {
-  activeTags.push({ text, type });
-  updateSearch();
+  // Vérifier si le tag existe déjà
+  if (!activeTags.some((tag) => tag.text === text)) {
+    activeTags.push({ text, type });
+    updateTagsDisplay();
+    updateSearch();
+  }
 }
 
 function removeTag(text) {
   activeTags = activeTags.filter((tag) => tag.text !== text);
+  updateTagsDisplay();
   updateSearch();
 }
 
