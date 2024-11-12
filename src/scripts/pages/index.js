@@ -57,7 +57,8 @@ function displayRecipes(recipesToDisplay = recipes) {
   if (recipesToDisplay.length === 0) {
     const searchText = searchInput.value.trim();
     recipesContainer.innerHTML = `
-      <div class="text-center p-4">
+      <div></div>
+      <div class="text-center p-4 w-full">
         <p>Aucune recette ne contient "${searchText}", vous pouvez chercher 
         "tarte aux pommes", "poisson", etc.</p>
       </div>
