@@ -56,7 +56,7 @@ export function createDropdown(id, label, items = [], type) {
               .map(
                 (item) => `
               <li class="px-4 py-[0.56rem] transition-bg duration-300 hover:bg-yellow cursor-pointer">
-                ${item}
+                ${item.charAt(0).toUpperCase() + item.slice(1)}
               </li>
             `
               )
