@@ -55,6 +55,10 @@ function filterRecipes(searchText, activeTags = []) {
 
 // Afficher les recettes filtrées ou un message si aucun résultat
 function displayRecipes(recipesToDisplay = recipes) {
+  // Mettre à jour le nombre de recettes
+  const recipeCount = document.querySelector(".font-anton");
+  recipeCount.textContent = `${recipesToDisplay.length} recettes`;
+
   if (recipesToDisplay.length === 0) {
     const searchText = searchInput.value.trim();
     recipesContainer.innerHTML = `
