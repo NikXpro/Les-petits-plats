@@ -124,6 +124,33 @@ function updateDropdownLists(filteredRecipes) {
     appliances.add(recipe.appliance.toLowerCase());
   });
 
+  // Filtrer les éléments déjà sélectionnés
+  const activeIngredients = new Set(
+    activeTags
+      .filter((tag) => tag.type === "ingredient")
+      .map((tag) => tag.text.toLowerCase())
+  );
+  const activeUstensils = new Set(
+    activeTags
+      .filter((tag) => tag.type === "ustensil")
+      .map((tag) => tag.text.toLowerCase())
+  );
+  const activeAppliances = new Set(
+    activeTags
+      .filter((tag) => tag.type === "appliance")
+      .map((tag) => tag.text.toLowerCase())
+  );
+
+  const filteredIngredients = Array.from(ingredients).filter(
+    (ing) => !activeIngredients.has(ing)
+  );
+  const filteredUstensils = Array.from(ustensils).filter(
+    (ust) => !activeUstensils.has(ust)
+  );
+  const filteredAppliances = Array.from(appliances).filter(
+    (app) => !activeAppliances.has(app)
+  );
+
   // Correction du sélecteur pour cibler le bon conteneur
   const filtersContainer = document.getElementById("filters-container");
   if (!filtersContainer) {
@@ -132,9 +159,9 @@ function updateDropdownLists(filteredRecipes) {
   }
 
   filtersContainer.innerHTML = `
-    ${createDropdown("ingredients", "Ingrédients", Array.from(ingredients))}
-    ${createDropdown("appliances", "Appareils", Array.from(appliances))}
-    ${createDropdown("utensils", "Ustensiles", Array.from(ustensils))}
+    ${createDropdown("ingredients", "Ingrédients", filteredIngredients)}
+    ${createDropdown("appliances", "Appareils", filteredAppliances)}
+    ${createDropdown("utensils", "Ustensiles", filteredUstensils)}
   `;
 
   // Initialiser les comportements
