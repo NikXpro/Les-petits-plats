@@ -146,6 +146,13 @@ export function initializeDropdown(id, onSelect) {
       dropdown.style.maxHeight = "0px";
       container.style.boxShadow = "none";
       button.querySelector("svg").style.transform = "rotate(0deg)";
+
+      // Attendre que l'animation de fermeture soit terminée avant de restaurer les coins arrondis
+      dropdown.addEventListener("transitionend", function handler() {
+        container.style.borderBottomLeftRadius = "0.6875rem";
+        container.style.borderBottomRightRadius = "0.6875rem";
+        dropdown.removeEventListener("transitionend", handler);
+      });
     }
   });
 }
