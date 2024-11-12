@@ -1,5 +1,5 @@
 import recipes from "../../data/recipes.js";
-import { toggleDropdown } from "../components/selector.js";
+import { createDropdown, initializeDropdown } from "../components/dropdown.js";
 
 const ingredientsDropdown = document.getElementById("ingredients-button");
 const recipesContainer = document.getElementById("recipes-container");
@@ -51,17 +51,44 @@ function createRecipeCard(recipe) {
   `;
 }
 
-// Afficher toutes les recettes
-function displayRecipes() {
-  recipesContainer.innerHTML = recipes
-    .map((recipe) => createRecipeCard(recipe))
-    .join("");
+// Mettre à jour les listes des dropdowns en fonction des recettes filtrées
+function updateDropdownLists(filteredRecipes) {
+  // Extraire les données
+  const ingredients = new Set();
+  const ustensils = new Set();
+  const appliances = new Set();
+
+  filteredRecipes.forEach((recipe) => {
+    recipe.ingredients.forEach((ing) =>
+      ingredients.add(ing.ingredient.toLowerCase())
+    );
+    recipe.ustensils.forEach((ust) => ustensils.add(ust.toLowerCase()));
+    appliances.add(recipe.appliance.toLowerCase());
+  });
+
+  // Correction du sélecteur pour cibler le bon conteneur
+  const filtersContainer = document.getElementById("filters-container");
+  if (!filtersContainer) {
+    console.error("Container des filtres non trouvé");
+    return;
+  }
+
+  filtersContainer.innerHTML = `
+    ${createDropdown("ingredients", "Ingrédients", Array.from(ingredients))}
+    ${createDropdown("appliances", "Appareils", Array.from(appliances))}
+    ${createDropdown("utensils", "Ustensiles", Array.from(ustensils))}
+  `;
+
+  // Initialiser les comportements
+  initializeDropdown("ingredients", (selected) =>
+    addTag(selected, "ingredient")
+  );
+  initializeDropdown("appliances", (selected) => addTag(selected, "appliance"));
+  initializeDropdown("utensils", (selected) => addTag(selected, "utensil"));
 }
 
 // Initialiser l'affichage
 displayRecipes();
 
-ingredientsDropdown.addEventListener("click", () => {
-  console.log("ingredientsDropdown");
-  toggleDropdown("ingredients-dropdown");
-});
+// Appeler updateDropdownLists au chargement initial
+updateDropdownLists(recipes);
