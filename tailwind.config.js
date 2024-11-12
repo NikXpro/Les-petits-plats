@@ -11,6 +11,7 @@ module.exports = {
           100: "#E7E7E7",
           200: "#C7BEBE",
           300: "#7A7A7A",
+          400: "#C6C6C6",
         },
         filter: {
           blue: "#3282F7",
