@@ -55,16 +55,16 @@
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <g id="Group 4">
+                <g id="search-icon">
                   <circle
-                    id="Ellipse 4"
+                    id="search-circle"
                     cx="10"
                     cy="10.4219"
                     r="9.5"
                     stroke="white"
                   />
                   <line
-                    id="Line 2"
+                    id="search-line"
                     x1="18.3536"
                     y1="19.0683"
                     x2="27.3536"
@@ -85,156 +85,17 @@
       <!-- Filtres -->
       <section class="flex flex-col w-full gap-[1.31rem]">
         <div class="flex flex-wrap items-center gap-[4.13rem]">
-          <!-- Filtre Ingrédients -->
-          <div class="flex gap-[4.13rem]">
-            <div class="relative bg-white rounded-[0.6875rem]">
-              <button
-                id="ingredients-button"
-                class="flex items-center gap-[3.94rem] size-full text-[1rem] text-black px-4 py-[1.06rem]"
-              >
-                Ingrédients
-                <svg
-                  class="w-4 h-4 transition-transform"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </button>
-
-              <!-- Menu déroulant -->
-              <div
-                id="ingredients-dropdown"
-                class="absolute z-10 hidden w-full px-4 py-[1.06rem] mt-1 rounded bg-white"
-              >
-                <div class="relative">
-                  <input
-                    type="text"
-                    placeholder="Rechercher un ingrédient"
-                    class="w-full p-2 text-black placeholder-white rounded-[0.3125rem]"
-                  />
-                  <svg
-                    class="absolute w-4 h-4 transform -translate-y-1/2 right-2 top-1/2"
-                    fill="none"
-                    stroke="black"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                    />
-                  </svg>
-                </div>
-
-                <!-- Liste des ingrédients -->
-                <ul class="mt-1 text-white">
-                  <li class="py-2">Jus de citron</li>
-                  <li class="py-2">Glaçons</li>
-                  <li class="py-2">Tomate</li>
-                  <li class="py-2">Poulet</li>
-                  <li class="py-2">Poivron rouge</li>
-                  <li class="py-2">Thon en miettes</li>
-                  <li class="py-2">Vinaigrette</li>
-                </ul>
-              </div>
-            </div>
-            <div class="relative bg-white rounded-[0.6875rem]">
-              <button
-                id="ingredients-button"
-                class="flex items-center gap-[3.94rem] size-full text-[1rem] text-black px-4 py-[1.06rem]"
-              >
-                Appareils
-                <svg
-                  class="w-4 h-4 transition-transform"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </button>
-
-              <!-- Menu déroulant -->
-              <div
-                id="ingredients-dropdown"
-                class="absolute z-10 hidden w-full px-4 py-[1.06rem] mt-1 rounded bg-white"
-              >
-                <div class="relative">
-                  <input
-                    type="text"
-                    placeholder="Rechercher un ingrédient"
-                    class="w-full p-2 text-black placeholder-white rounded-[0.3125rem]"
-                  />
-                  <svg
-                    class="absolute w-4 h-4 transform -translate-y-1/2 right-2 top-1/2"
-                    fill="none"
-                    stroke="black"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                    />
-                  </svg>
-                </div>
-
-                <!-- Liste des ingrédients -->
-                <ul class="mt-1 text-white">
-                  <li class="py-2">Jus de citron</li>
-                  <li class="py-2">Glaçons</li>
-                  <li class="py-2">Tomate</li>
-                  <li class="py-2">Poulet</li>
-                  <li class="py-2">Poivron rouge</li>
-                  <li class="py-2">Thon en miettes</li>
-                  <li class="py-2">Vinaigrette</li>
-                </ul>
-              </div>
-            </div>
-          </div>
+          <!-- Les dropdowns seront injectés ici dynamiquement -->
+          <div id="filters-container" class="flex gap-[4.13rem]"></div>
 
           <span class="ml-auto text-black font-anton text-[1.3125rem]"
             >1500 recettes</span
           >
         </div>
-        <div class="flex gap-[4.13rem]">
-          <div class="relative bg-yellow rounded-[0.625rem]">
-            <button
-              id="filter-active-button"
-              class="flex items-center gap-[3.75rem] size-full text-[0.875rem] text-[#000000] px-[1.12rem] py-[1.06rem] justify-center"
-            >
-              Crème de coco
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="14"
-                height="13"
-                viewBox="0 0 14 13"
-                fill="none"
-              >
-                <path
-                  d="M12 11.5L7 6.5M7 6.5L2 1.5M7 6.5L12 1.5M7 6.5L2 11.5"
-                  stroke="#1B1B1B"
-                  stroke-width="2.16667"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </button>
-          </div>
+
+        <!-- Section des tags actifs -->
+        <div class="flex gap-[4.13rem]" id="active-tags">
+          <!-- Les tags seront injectés ici dynamiquement -->
         </div>
       </section>
 
@@ -243,185 +104,7 @@
         <div
           class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
           id="recipes-container"
-        >
-          <article
-            class="overflow-hidden bg-white rounded-[1.3125rem] shadow w-full max-w-[23.75rem] mx-auto"
-          >
-            <div class="relative h-[15.8125rem]">
-              <img
-                src="/src/assets/images/recettes/Recette01.jpg"
-                alt="Recipe"
-                class="object-cover w-full h-full"
-              />
-              <span
-                class="absolute px-[0.94rem] py-[0.31rem] text-[0.75rem] rounded-full bg-yellow top-[1.31rem] right-[1.25rem]"
-                >10min</span
-              >
-            </div>
-            <div
-              class="px-[1.563rem] pt-8 pb-[3.81rem] flex flex-col gap-[1.81rem]"
-            >
-              <h2 class="text-lg font-normal font-anton">Limonade de coco</h2>
-              <div class="flex flex-col gap-[0.94rem]">
-                <h3
-                  class="text-[0.75rem] font-bold text-gray-300 tracking-[0.0675rem] uppercase"
-                >
-                  Recette
-                </h3>
-                <p class="text-sm font-normal text-black line-clamp-4">
-                  Mettre les glaçons à votre goût dans le blender, ajouter le
-                  lait, la crème de coco, le jus de 2 citrons et le sucre. Mixer
-                  jusqu'à avoir la consistence désirée.
-                </p>
-              </div>
-              <div>
-                <h3 class="mb-2 text-sm text-gray-500 uppercase">
-                  Ingrédients
-                </h3>
-                <div class="grid grid-cols-2 gap-4">
-                  <div class="text-sm">
-                    <p class="font-medium text-black">Lait de coco</p>
-                    <p class="text-gray-300 text-[0.875rem]">400ml</p>
-                  </div>
-                  <div class="text-sm">
-                    <p class="font-medium text-black">Jus de citron</p>
-                    <p class="text-gray-300 text-[0.875rem]">2</p>
-                  </div>
-                  <div class="text-sm">
-                    <p class="font-medium text-black">Créme de coco</p>
-                    <p class="text-gray-300 text-[0.875rem]">4 cuillères</p>
-                  </div>
-                  <div class="text-sm">
-                    <p class="font-medium text-black">Sucre</p>
-                    <p class="text-gray-300 text-[0.875rem]">20g</p>
-                  </div>
-                  <div class="text-sm">
-                    <p class="font-medium text-black">Glaçons</p>
-                    <p class="text-gray-300 text-[0.875rem]">2</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </article>
-          <article
-            class="overflow-hidden bg-white rounded-[1.3125rem] shadow w-full max-w-[23.75rem] mx-auto"
-          >
-            <div class="relative h-[15.8125rem]">
-              <img
-                src="/src/assets/images/recettes/Recette01.jpg"
-                alt="Recipe"
-                class="object-cover w-full h-full"
-              />
-              <span
-                class="absolute px-[0.94rem] py-[0.31rem] text-[0.75rem] rounded-full bg-yellow top-[1.31rem] right-[1.25rem]"
-                >10min</span
-              >
-            </div>
-            <div
-              class="px-[1.563rem] pt-8 pb-[3.81rem] flex flex-col gap-[1.81rem]"
-            >
-              <h2 class="text-lg font-normal font-anton">Limonade de coco</h2>
-              <div class="flex flex-col gap-[0.94rem]">
-                <h3
-                  class="text-[0.75rem] font-bold text-gray-300 tracking-[0.0675rem] uppercase"
-                >
-                  Recette
-                </h3>
-                <p class="text-sm font-normal text-black line-clamp-4">
-                  Mettre les glaçons à votre goût dans le blender, ajouter le
-                  lait, la crème de coco, le jus de 2 citrons et le sucre. Mixer
-                  jusqu'à avoir la consistence désirée.
-                </p>
-              </div>
-              <div>
-                <h3 class="mb-2 text-sm text-gray-500 uppercase">
-                  Ingrédients
-                </h3>
-                <div class="grid grid-cols-2 gap-4">
-                  <div class="text-sm">
-                    <p class="font-medium text-black">Lait de coco</p>
-                    <p class="text-gray-300 text-[0.875rem]">400ml</p>
-                  </div>
-                  <div class="text-sm">
-                    <p class="font-medium text-black">Jus de citron</p>
-                    <p class="text-gray-300 text-[0.875rem]">2</p>
-                  </div>
-                  <div class="text-sm">
-                    <p class="font-medium text-black">Créme de coco</p>
-                    <p class="text-gray-300 text-[0.875rem]">4 cuillères</p>
-                  </div>
-                  <div class="text-sm">
-                    <p class="font-medium text-black">Sucre</p>
-                    <p class="text-gray-300 text-[0.875rem]">20g</p>
-                  </div>
-                  <div class="text-sm">
-                    <p class="font-medium text-black">Glaçons</p>
-                    <p class="text-gray-300 text-[0.875rem]">2</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </article>
-          <article
-            class="overflow-hidden bg-white rounded-[1.3125rem] shadow w-full max-w-[23.75rem] mx-auto"
-          >
-            <div class="relative h-[15.8125rem]">
-              <img
-                src="/src/assets/images/recettes/Recette01.jpg"
-                alt="Recipe"
-                class="object-cover w-full h-full"
-              />
-              <span
-                class="absolute px-[0.94rem] py-[0.31rem] text-[0.75rem] rounded-full bg-yellow top-[1.31rem] right-[1.25rem]"
-                >10min</span
-              >
-            </div>
-            <div
-              class="px-[1.563rem] pt-8 pb-[3.81rem] flex flex-col gap-[1.81rem]"
-            >
-              <h2 class="text-lg font-normal font-anton">Limonade de coco</h2>
-              <div class="flex flex-col gap-[0.94rem]">
-                <h3
-                  class="text-[0.75rem] font-bold text-gray-300 tracking-[0.0675rem] uppercase"
-                >
-                  Recette
-                </h3>
-                <p class="text-sm font-normal text-black line-clamp-4">
-                  Mettre les glaçons à votre goût dans le blender, ajouter le
-                  lait, la crème de coco, le jus de 2 citrons et le sucre. Mixer
-                  jusqu'à avoir la consistence désirée.
-                </p>
-              </div>
-              <div>
-                <h3 class="mb-2 text-sm text-gray-500 uppercase">
-                  Ingrédients
-                </h3>
-                <div class="grid grid-cols-2 gap-4">
-                  <div class="text-sm">
-                    <p class="font-medium text-black">Lait de coco</p>
-                    <p class="text-gray-300 text-[0.875rem]">400ml</p>
-                  </div>
-                  <div class="text-sm">
-                    <p class="font-medium text-black">Jus de citron</p>
-                    <p class="text-gray-300 text-[0.875rem]">2</p>
-                  </div>
-                  <div class="text-sm">
-                    <p class="font-medium text-black">Créme de coco</p>
-                    <p class="text-gray-300 text-[0.875rem]">4 cuillères</p>
-                  </div>
-                  <div class="text-sm">
-                    <p class="font-medium text-black">Sucre</p>
-                    <p class="text-gray-300 text-[0.875rem]">20g</p>
-                  </div>
-                  <div class="text-sm">
-                    <p class="font-medium text-black">Glaçons</p>
-                    <p class="text-gray-300 text-[0.875rem]">2</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </article>
-        </div>
+        ></div>
       </section>
     </main>
     <script type="module" src="/src/scripts/pages/index.js"></script>
