@@ -181,7 +181,9 @@ displayRecipes();
 
 // Écouteur d'événement pour la recherche principale
 searchInput.addEventListener("input", (e) => {
-  updateSearch();
+  if (e.target.value.trim().length >= 3 || e.target.value.trim().length === 0) {
+    updateSearch();
+  }
 });
 
 // Appeler updateDropdownLists au chargement initial
