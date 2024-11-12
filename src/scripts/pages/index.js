@@ -1,54 +1,92 @@
 import recipes from "../../data/recipes.js";
 import { createDropdown, initializeDropdown } from "../components/dropdown.js";
+import { recipeCard } from "../components/recipeCard.js";
 
 const ingredientsDropdown = document.getElementById("ingredients-button");
 const recipesContainer = document.getElementById("recipes-container");
+const searchInput = document.querySelector("input[type='text']");
 
-// Fonction pour créer une carte de recette
-function createRecipeCard(recipe) {
-  return `
-    <article class="overflow-hidden bg-white rounded-[1.3125rem] shadow w-full max-w-[23.75rem] mx-auto">
-      <div class="relative h-[15.8125rem]">
-        <img
-          src="/src/assets/images/recettes/${recipe.image}"
-          alt="Recipe"
-          loading="lazy"
-          class="object-cover w-full h-full"
-        />
-        <span class="absolute px-[0.94rem] py-[0.31rem] text-[0.75rem] rounded-full bg-yellow top-[1.31rem] right-[1.25rem]">${
-          recipe.time
-        }min</span>
+let activeTags = [];
+
+// Filtrer les recettes en fonction du texte de recherche et des tags
+function filterRecipes(searchText, activeTags = []) {
+  let filteredRecipes = recipes;
+
+  // Filtre par texte si plus de 3 caractères
+  if (searchText.length >= 3) {
+    const searchLower = searchText.toLowerCase();
+    filteredRecipes = filteredRecipes.filter((recipe) => {
+      return (
+        recipe.name.toLowerCase().includes(searchLower) ||
+        recipe.ingredients.some((ing) =>
+          ing.ingredient.toLowerCase().includes(searchLower)
+        ) ||
+        recipe.description.toLowerCase().includes(searchLower)
+      );
+    });
+  }
+
+  // Filtre par tags (intersection des résultats)
+  if (activeTags.length > 0) {
+    filteredRecipes = filteredRecipes.filter((recipe) => {
+      return activeTags.every((tag) => {
+        const tagLower = tag.text.toLowerCase();
+        switch (tag.type) {
+          case "ingredient":
+            return recipe.ingredients.some((ing) =>
+              ing.ingredient.toLowerCase().includes(tagLower)
+            );
+          case "ustensil":
+            return recipe.ustensils.some((ust) =>
+              ust.toLowerCase().includes(tagLower)
+            );
+          case "appliance":
+            return recipe.appliance.toLowerCase().includes(tagLower);
+          default:
+            return false;
+        }
+      });
+    });
+  }
+
+  return filteredRecipes;
+}
+
+// Afficher les recettes filtrées ou un message si aucun résultat
+function displayRecipes(recipesToDisplay = recipes) {
+  if (recipesToDisplay.length === 0) {
+    const searchText = searchInput.value.trim();
+    recipesContainer.innerHTML = `
+      <div class="text-center p-4">
+        <p>Aucune recette ne contient "${searchText}", vous pouvez chercher 
+        "tarte aux pommes", "poisson", etc.</p>
       </div>
-      <div class="px-[1.563rem] pt-8 pb-[3.81rem] flex flex-col gap-[1.81rem]">
-        <h2 class="text-lg font-normal font-anton">${recipe.name}</h2>
-        <div class="flex flex-col gap-[0.94rem]">
-          <h3 class="text-[0.75rem] font-bold text-gray-300 tracking-[0.0675rem] uppercase">Recette</h3>
-          <p class="text-sm font-normal text-black line-clamp-4">${
-            recipe.description
-          }</p>
-        </div>
-        <div>
-          <h3 class="mb-2 text-sm text-gray-500 uppercase">Ingrédients</h3>
-          <div class="grid grid-cols-2 gap-4">
-            ${recipe.ingredients
-              .map(
-                (ing) => `
-              <div class="text-sm">
-                <p class="font-medium text-black">${ing.ingredient}</p>
-                <p class="text-gray-300 text-[0.875rem]">${
-                  ing.quantity
-                    ? `${ing.quantity}${ing.unit ? ing.unit : ""}`
-                    : ""
-                }</p>
-              </div>
-            `
-              )
-              .join("")}
-          </div>
-        </div>
-      </div>
-    </article>
-  `;
+    `;
+  } else {
+    recipesContainer.innerHTML = recipesToDisplay
+      .map((recipe) => recipeCard(recipe))
+      .join("");
+  }
+}
+
+// Gérer les tags actifs
+
+function addTag(text, type) {
+  activeTags.push({ text, type });
+  updateSearch();
+}
+
+function removeTag(text) {
+  activeTags = activeTags.filter((tag) => tag.text !== text);
+  updateSearch();
+}
+
+// Mettre à jour la recherche
+function updateSearch() {
+  const searchText = searchInput.value.trim();
+  const filteredRecipes = filterRecipes(searchText, activeTags);
+  displayRecipes(filteredRecipes);
+  updateDropdownLists(filteredRecipes);
 }
 
 // Mettre à jour les listes des dropdowns en fonction des recettes filtrées
@@ -89,6 +127,11 @@ function updateDropdownLists(filteredRecipes) {
 
 // Initialiser l'affichage
 displayRecipes();
+
+// Écouteur d'événement pour la recherche principale
+searchInput.addEventListener("input", (e) => {
+  updateSearch();
+});
 
 // Appeler updateDropdownLists au chargement initial
 updateDropdownLists(recipes);
