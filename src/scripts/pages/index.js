@@ -161,7 +161,7 @@ function updateDropdownLists(filteredRecipes) {
   filtersContainer.innerHTML = `
     ${createDropdown("ingredients", "Ingrédients", filteredIngredients)}
     ${createDropdown("appliances", "Appareils", filteredAppliances)}
-    ${createDropdown("utensils", "Ustensiles", filteredUstensils)}
+    ${createDropdown("ustensil", "Ustensiles", filteredUstensils)}
   `;
 
   // Initialiser les comportements
@@ -169,7 +169,7 @@ function updateDropdownLists(filteredRecipes) {
     addTag(selected, "ingredient")
   );
   initializeDropdown("appliances", (selected) => addTag(selected, "appliance"));
-  initializeDropdown("utensils", (selected) => addTag(selected, "utensil"));
+  initializeDropdown("ustensil", (selected) => addTag(selected, "ustensil"));
 }
 
 // Initialiser l'affichage
