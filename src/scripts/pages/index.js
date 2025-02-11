@@ -19,38 +19,97 @@ function filterRecipes(searchText, activeTags = []) {
   // Filtre par texte si plus de 3 caractères
   if (searchText.length >= 3) {
     const searchLower = searchText.toLowerCase();
-    filteredRecipes = filteredRecipes.filter((recipe) => {
-      return (
-        recipe.name.toLowerCase().includes(searchLower) ||
-        recipe.ingredients.some((ing) =>
-          ing.ingredient.toLowerCase().includes(searchLower)
-        ) ||
+
+    for (let i = 0; i < recipes.length; i++) {
+      const recipe = recipes[i];
+      let matchFound = false;
+
+      // Vérifier le nom
+      if (recipe.name.toLowerCase().includes(searchLower)) {
+        matchFound = true;
+      }
+
+      // Vérifier les ingrédients
+      if (!matchFound) {
+        for (let j = 0; j < recipe.ingredients.length; j++) {
+          if (
+            recipe.ingredients[j].ingredient.toLowerCase().includes(searchLower)
+          ) {
+            matchFound = true;
+            break;
+          }
+        }
+      }
+
+      // Vérifier la description
+      if (
+        !matchFound &&
         recipe.description.toLowerCase().includes(searchLower)
-      );
-    });
+      ) {
+        matchFound = true;
+      }
+
+      if (matchFound) {
+        filteredRecipes.push(recipe);
+      }
+    }
+  } else {
+    filteredRecipes = [...recipes];
   }
 
   // Filtre par tags (intersection des résultats)
   if (activeTags.length > 0) {
-    filteredRecipes = filteredRecipes.filter((recipe) => {
-      return activeTags.every((tag) => {
+    const tempRecipes = [];
+
+    for (let i = 0; i < filteredRecipes.length; i++) {
+      const recipe = filteredRecipes[i];
+      let allTagsMatch = true;
+
+      for (let j = 0; j < activeTags.length; j++) {
+        const tag = activeTags[j];
         const tagLower = tag.text.toLowerCase();
+        let tagMatch = false;
+
         switch (tag.type) {
           case "ingredient":
-            return recipe.ingredients.some((ing) =>
-              ing.ingredient.toLowerCase().includes(tagLower)
-            );
+            for (let k = 0; k < recipe.ingredients.length; k++) {
+              if (
+                recipe.ingredients[k].ingredient
+                  .toLowerCase()
+                  .includes(tagLower)
+              ) {
+                tagMatch = true;
+                break;
+              }
+            }
+            break;
           case "ustensil":
-            return recipe.ustensils.some((ust) =>
-              ust.toLowerCase().includes(tagLower)
-            );
+            for (let k = 0; k < recipe.ustensils.length; k++) {
+              if (recipe.ustensils[k].toLowerCase().includes(tagLower)) {
+                tagMatch = true;
+                break;
+              }
+            }
+            break;
           case "appliance":
-            return recipe.appliance.toLowerCase().includes(tagLower);
-          default:
-            return false;
+            if (recipe.appliance.toLowerCase().includes(tagLower)) {
+              tagMatch = true;
+            }
+            break;
         }
-      });
-    });
+
+        if (!tagMatch) {
+          allTagsMatch = false;
+          break;
+        }
+      }
+
+      if (allTagsMatch) {
+        tempRecipes.push(recipe);
+      }
+    }
+
+    filteredRecipes = tempRecipes;
   }
 
   return filteredRecipes;
