@@ -36,6 +36,14 @@ export function createDropdown(id, label, items = [], type) {
               placeholder=""
               class="w-full p-2 text-black placeholder-gray-400 rounded-[0.125rem] border-solid border-gray-400 border-[1px]"
             />
+            <button
+              class="absolute right-[2.68rem] top-1/2 -translate-y-1/2 p-2 hidden"
+            >
+              <svg width="0.4375rem" height="0.4375rem" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M1.23405 1.23397C1.65712 0.810905 2.34305 0.810905 2.76611 1.23397L8.50008 6.96794L14.234 1.23397C14.6571 0.810905 15.343 0.810905 15.7661 1.23397C16.1892 1.65704 16.1892 2.34297 15.7661 2.76604L10.0321 8.50001L15.7661 14.234C16.1892 14.657 16.1892 15.343 15.7661 15.766C15.343 16.1891 14.6571 16.1891 14.234 15.766L8.50008 10.0321L2.76611 15.766C2.34305 16.1891 1.65712 16.1891 1.23405 15.766C0.810981 15.343 0.810981 14.657 1.23405 14.234L6.96802 8.50001L1.23405 2.76604C0.810981 2.34297 0.810981 1.65704 1.23405 1.23397Z" fill="#7A7A7A"/>
+              </svg>
+            </button>
+
             <svg
               class="absolute w-4 h-4 transform -translate-y-1/2 right-[1.72rem] top-1/2"
               fill="none"
@@ -123,11 +131,23 @@ export function initializeDropdown(id, onSelect) {
   input.addEventListener("input", (e) => {
     const searchValue = e.target.value.toLowerCase();
     const items = Array.from(list.children);
+    const clearButton = input.parentElement.querySelector("button");
+
+    // Afficher/masquer le bouton de croix
+    clearButton.style.display = searchValue ? "block" : "none";
 
     items.forEach((item) => {
       const text = item.textContent.toLowerCase();
       item.style.display = text.includes(searchValue) ? "" : "none";
     });
+  });
+
+  // Gérer le clic sur le bouton de croix dans le dropdown
+  const clearButton = input.parentElement.querySelector("button");
+  clearButton.addEventListener("click", () => {
+    input.value = "";
+    input.dispatchEvent(new Event("input"));
+    input.focus();
   });
 
   // Gérer la sélection d'un item
