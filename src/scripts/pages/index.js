@@ -199,3 +199,18 @@ searchInput.addEventListener("input", (e) => {
 
 // Appeler updateDropdownLists au chargement initial
 updateDropdownLists(recipes);
+
+// Gestion de la barre de recherche principale
+const mainSearchInput = document.querySelector("header input[type='text']");
+const mainSearchClear = document.getElementById("main-search-clear");
+
+mainSearchInput.addEventListener("input", (e) => {
+  const searchValue = e.target.value;
+  mainSearchClear.style.display = searchValue ? "block" : "none";
+});
+
+mainSearchClear.addEventListener("click", () => {
+  mainSearchInput.value = "";
+  mainSearchInput.dispatchEvent(new Event("input"));
+  mainSearchInput.focus();
+});
