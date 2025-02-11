@@ -13,7 +13,7 @@
  */
 export function recipeCard(recipe) {
   return `
-    <article class="overflow-hidden bg-white rounded-[1.3125rem] shadow w-full max-w-[23.75rem] mx-auto">
+    <article class="overflow-hidden bg-white rounded-[1.3125rem] shadow-[0px_4px_34px_30px_rgba(0,0,0,0.04)] w-full max-w-[23.75rem] mx-auto ">
       <div class="relative h-[15.8125rem]">
         <img
           src="/src/assets/images/recettes/${recipe.image}"
