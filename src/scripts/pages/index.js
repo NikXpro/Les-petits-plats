@@ -14,7 +14,7 @@ let wasAboveThreeChars = false;
 
 // Filtrer les recettes en fonction du texte de recherche et des tags
 function filterRecipes(searchText, activeTags = []) {
-  let filteredRecipes = recipes;
+  let filteredRecipes = [];
 
   // Filtre par texte si plus de 3 caractères
   if (searchText.length >= 3) {
